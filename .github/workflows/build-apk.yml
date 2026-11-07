@@ -56,7 +56,7 @@ jobs:
       - name: Build web app
         run: |
           npm run build
-          test -s dist/index.html
+          if [ -s dist/index.html ] || [ -s out/index.html ]; then echo "web build OK"; else echo "web build missing"; ls; exit 1; fi
 
       - name: Add Android and sync
         run: |
